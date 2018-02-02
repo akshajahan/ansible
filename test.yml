@@ -1,0 +1,17 @@
+---
+- hosts: rhel
+  remote_user: root
+  tasks:
+  - name: copy xrdp
+    copy: src=/home/shaj/xrdp-0.9.0-4.el7.x86_64.rpm dest=/root/
+  - selinux: policy=targeted state=permissive
+  - name: install tigervnc-server
+    yum: name=tigervnc-server state=present
+  - name: install xrdp
+    yum: name=/root/xrdp-0.9.0-4.el7.x86_64.rpm state=present
+#  - name: firewall open port 3389
+#  - firewalld: port=3389/tcp permanent=true state=enabled
+   # name: enable and start xrdp service
+  - service: name=xrdp enabled=yes
+  - service: name=xrdp state=started
+...

@@ -1,0 +1,10 @@
+---
+
+- hosts: rhel
+    tasks:
+    - name: " copy xrdp file to target system"
+    - copy:  
+       "src=/home/shaj/xrdp-0.9.0-4.el7.x86_64.rpm dest=/root/"
+    - name: "disable selinux"
+    - command: /sbin/setenforce 0
+...

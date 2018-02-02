@@ -1,0 +1,13 @@
+--- # structure of YAML
+    - hosts: vm
+      remote_user: root
+      become: yes
+      tasks:
+        - name: Install HTTPD server on centOs 7
+            yum: name=httpd state=latest
+      notify: 
+        - startservice
+
+      handlers:
+        - name: startservice
+          service: name=httpd state=restarted 
